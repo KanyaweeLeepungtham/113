@@ -16,10 +16,28 @@ def add_graph():
         })
     print("Graph data:", graph_data)
 add_graph()
-#prim algo
-def prim():
-    # สุ่มหาราก
-    root = random.choice([edge['start'] for edge in graph_data])
-    print("Random start node:", root)
-    #หาเส้นที่นน.น้อยที่สุดจากจุด
-    
+#kru algo
+def kru():
+    #เรียงลำดับนน.
+    root = sorted(graph_data, key=lambda k: k['distance'])
+    #เพื่ออะไร
+    route= set()
+    #เก็บเส้นทางที่ไป
+    ans=[]
+    #นนรวม
+    total = 0
+    for i in root:
+        s=i['start']
+        f=i['finish']
+
+
+        if s not in route or f not in route:
+            ans.append(i)
+            route.add(s)
+            route.add(f)
+    total = sum(r['distance'] for r in ans)
+    print("Total weight =", total)
+kru()
+
+
+
