@@ -46,24 +46,25 @@ def prim():
 
 # ======Kru algo======
 def kru():
-    if not graph_data:
-        print("No graph data!")
-        return
-    # เรียงลำดับนน.
+    # เรียงลำดับนน. -> จุดเริ่ม -> จุดจบ
     root = sorted(graph_data, key=lambda i: (i['distance'], i['start'], i['finish']))
     route = set()
     ans = []
     total = 0
+
     for i in root:
+        # เก็บค่า node
         s = i['start']
         f = i['finish']
+        # จุดเริ่ม != จุดจบ/ ยังไม่เป็นลูป
         if s not in route or f not in route:
             ans.append(i)
             route.add(s)
             route.add(f)
+    # หาค่า นน.
     total = sum(r['distance'] for r in ans)
     print("Total Weight =", total)
-    
+
 prim()
 kru()
 
