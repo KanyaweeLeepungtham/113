@@ -34,7 +34,7 @@ for edge in graph_data:
     u = node_to_id[edge["start"]]
     v = node_to_id[edge["finish"]]
     adj[u].append(v)
-    adj[v].append(u)  # ← เพิ่ม (ทำให้กราฟเป็น undirected)
+    adj[v].append(u)  # (ทำให้กราฟเป็น undirected)
 
 
 # -----------------------------
@@ -140,11 +140,12 @@ def prim():
     ans = []
     total_weight = 0
 
+    # สุ่มเลือกราก
     root = random.choice(nodes)
     visited = {root}
 
     all_nodes = set(nodes)
-
+    # จุดเริ่ม != จุดจบ/ ยังไม่เป็นลูป
     while visited != all_nodes:
         candidate_edges = [
             i
@@ -153,9 +154,10 @@ def prim():
             or (i["finish"] in visited and i["start"] not in visited)
         ]
 
-        if not candidate_edges:  # ← เพิ่ม (กัน Prim ค้าง)
+        if not candidate_edges:  # (กัน Prim ค้าง)
             break
 
+        # หาเส้นที่นนใน้อยที่สุด นน.->จุดเริ่ม ->จุดจบ
         min_edge = min(candidate_edges, key=lambda i: i["distance"])
 
         ans.append(min_edge)
@@ -193,11 +195,14 @@ def kruskal(graph):
         d = i["distance"]
         edges.append((s, f, d))
 
+    # [2] = distance (0=start,1 = finish)
     edges.sort(key=lambda i: i[2])
+    # UnionFind ใช้ได้เฉพาะตัวเลข only
     uf = UnionFind(len(nodes))
     mst = []
     total_weight = 0
 
+    # s = start, f = finish, d = distance
     for s, f, d in edges:
         if uf.union(s, f):
             mst.append((s, f, d))
