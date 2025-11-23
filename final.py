@@ -146,14 +146,14 @@ def prim():
                or (i['finish'] in visited and i['start'] not in visited)
         ]
         # หาเส้นที่นนใน้อยที่สุด นน.->จุดเริ่ม ->จุดจบ
-        min_edge = min(candidate_edges, key=lambda i: i['distance'])
+        min_edge = min(candidate_edges, key=lambda i: i['distance'],i['start'],i['finish'])
 
         ans.append(min_edge)
         total_weight += min_edge['distance']
 
         visited.add(min_edge['start'])
         visited.add(min_edge['finish'])
-    print("Total Weight(prim) =", total_weight)
+    print("Total Weight(prim) = ", total_weight)
 
 
 
@@ -195,7 +195,7 @@ def kruskal(graph):
             mst.append((s, f, d))
             total_weight += d
 
-    print("Total Weight(kru) =", total_weight)
+    print("Total Weight(kru) = ", total_weight)
 
 prim()
 kruskal(graph_data)
