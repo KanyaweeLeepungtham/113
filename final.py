@@ -146,7 +146,7 @@ def prim():
                or (i['finish'] in visited and i['start'] not in visited)
         ]
         # หาเส้นที่นนใน้อยที่สุด นน.->จุดเริ่ม ->จุดจบ
-        min_edge = min(candidate_edges, key=lambda i: i['distance'],i['start'],i['finish'])
+        min_edge = min(candidate_edges, key=lambda i: i['distance'])
 
         ans.append(min_edge)
         total_weight += min_edge['distance']
