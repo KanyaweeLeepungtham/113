@@ -169,14 +169,15 @@ def prim():
 
 # ======Kru algo======
 class UnionFind:
+    #nodeทุกตัววนหาตัวเอง
     def __init__(self, n):
         self.parent = list(range(n))
-
+    #หาตัวการ(ปลายทาง)
     def find(self, x):
         if self.parent[x] != x:
             self.parent[x] = self.find(self.parent[x])
         return self.parent[x]
-
+    #ถ้ายังไม่เชื่อมจับมาเชื่อมกัน
     def union(self, a, b):
         ra, rb = self.find(a), self.find(b)
         if ra != rb:
