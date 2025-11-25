@@ -148,10 +148,9 @@ def prim():
     # จุดเริ่ม != จุดจบ/ ยังไม่เป็นลูป
     while visited != all_nodes:
         candidate_edges = [
-            i
-            for i in graph_data
+            i for i in graph_data
             if (i["start"] in visited and i["finish"] not in visited)
-            or (i["finish"] in visited and i["start"] not in visited)
+                or (i["finish"] in visited and i["start"] not in visited)
         ]
 
         if not candidate_edges:  # (กัน Prim ค้าง)
