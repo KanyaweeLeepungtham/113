@@ -167,7 +167,7 @@ def prim():
 
     print("Total Weight(prim) =", total_weight)
 
-
+# ======Kru algo======
 class UnionFind:
     def __init__(self, n):
         self.parent = list(range(n))
@@ -185,7 +185,6 @@ class UnionFind:
         return False
 
 
-# ======Kru algo======
 def kruskal(graph):
     edges = []
     for i in graph:
